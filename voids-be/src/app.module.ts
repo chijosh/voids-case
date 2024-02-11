@@ -5,9 +5,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SupplyModule } from './supply/supply.module';
 import { ProductModule } from './product/product.module';
+import { WeatherModule } from './weather/weather.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(dataSourceOptions), SupplyModule, ProductModule],
+  imports: [
+    TypeOrmModule.forRoot(dataSourceOptions),
+    SupplyModule,
+    ProductModule,
+    WeatherModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

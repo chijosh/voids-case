@@ -1,9 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateSupplyDto } from './dto/create-supply.dto';
-import { UpdateSupplyDto } from './dto/update-supply.dto';
+import { Repository, UpdateResult, DeleteResult } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { SupplyEntity } from './entities/supply.entity';
 
 @Injectable()
 export class SupplyService {
+  constructor(
+    @InjectRepository(SupplyEntity)
+    private readonly SupplyRepository: Repository<SupplyEntity>,
+  ) {}
+
   private supplyData: any[] = [
     {
       id: 1,
@@ -34,23 +40,27 @@ export class SupplyService {
     },
   ];
 
-  create(createSupplyDto: CreateSupplyDto) {
-    return 'This action adds a new supply';
+  async create(supply: SupplyEntity): Promise<SupplyEntity> {
+    return await this.SupplyRepository.create(supply);
   }
 
   findAll() {
     return this.supplyData;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} supply`;
+  // async getAll(): Promise<SupplyEntity[]> {
+  //   return await this.SupplyRepository.find();
+  // }
+
+  // async getOne(id: number): Promise<SupplyEntity> {
+  //   // return await this.SupplyRepository.findOne(id);
+  // }
+
+  async update(id: number, supply: SupplyEntity): Promise<UpdateResult> {
+    return await this.SupplyRepository.update(id, supply);
   }
 
-  update(id: number, updateSupplyDto: UpdateSupplyDto) {
-    return `This action updates a #${id} supply`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} supply`;
+  async remove(id: number): Promise<DeleteResult> {
+    return await this.SupplyRepository.delete(id);
   }
 }
