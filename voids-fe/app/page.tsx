@@ -15,7 +15,7 @@ export default function Home() {
   useEffect(() => {
     const fetchInventory = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/supply");
+        const response = await axios.get("http://localhost:3000/api/v1/supply");
 
         console.log({ response });
 

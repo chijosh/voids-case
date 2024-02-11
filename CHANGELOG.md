@@ -1,6 +1,6 @@
 [v0.0.4] - 11.01.2024
 
-    Add InventoryManagenment, dropDown, Product FE components
+    Configure BE for Sqlite and add product resource
     
     
 [v0.0.3] - 11.01.2024

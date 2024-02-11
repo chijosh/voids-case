@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { dataSourceOptions } from '../db/data-source';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SupplyModule } from './supply/supply.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
-  imports: [SupplyModule],
+  imports: [TypeOrmModule.forRoot(dataSourceOptions), SupplyModule, ProductModule],
   controllers: [AppController],
   providers: [AppService],
 })
